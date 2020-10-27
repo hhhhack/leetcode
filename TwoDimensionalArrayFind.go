@@ -14,11 +14,11 @@ func find(array [][]int, int num) [2]int{
 	height := len(array)
 	i := length - 1
 	j := 0
-	for i > =0; i--{
+	for ;i >= 0; i--{
 		if array[j][i] >  num{
 			continue
 		}else if array[j][i] < num{
-			for j < height; j++{
+			for ;j < height; j++{
 				if array[j][i] > num{
 					break
 				}else if array[j][i] < num{
