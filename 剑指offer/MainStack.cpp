@@ -24,35 +24,38 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-05 11:05:33
+ * @Date: 2020-12-05 09:51:15
+ * @LastEditTime: 2020-12-05 09:58:02
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/剑指offer/MainStack.cpp
  * @
  */
 
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
+#include <stack>
+using namespace std;
 
-#include <vector>
-#include <cstring>
-#include <queue>
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+class MainStack {
+public:
+    void push(int value) {
+        if (min_sta.size() == 0 || min_sta.top() > value){
+            min_sta.push(value);
+        }
+        data_sta.push(value);
     }
+    void pop() {
+        if (data_sta.top() == min_sta.top()){
+            min_sta.pop();
+        }
+        data_sta.pop();
+    }
+    int top() {
+        return data_sta.top();
+    }
+    int min() {
+        return min_sta.top();
+    }
+private:
+    stack<int> data_sta;
+    stack<int> min_sta;
 };
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
-
-#endif

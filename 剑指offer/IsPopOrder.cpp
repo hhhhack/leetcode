@@ -24,35 +24,33 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-05 11:05:33
+ * @Date: 2020-12-05 10:52:27
+ * @LastEditTime: 2020-12-05 11:01:13
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/剑指offer/IsPopOrder.cpp
  * @
  */
 
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
-
 #include <vector>
-#include <cstring>
-#include <queue>
+#include <stack>
+using namespace std;
 
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+bool IsPopOrder(vector<int> pushV,vector<int> popV) {
+    stack<int>sta;
+    for (int i = 0, j = 0; i < pushV.size(); i++){
+        sta.push(pushV[i]);
+        while (sta.size() != 0)
+        {
+            if (sta.top() == popV[j]){
+                sta.pop();
+                j++;
+            }else{
+                break;
+            }
+        }
     }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
-
-#endif
+    if (sta.size() == 0)
+        return true;
+    return false;
+}

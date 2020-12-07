@@ -24,35 +24,22 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-05 11:05:33
+ * @Date: 2020-12-07 14:50:34
+ * @LastEditTime: 2020-12-07 14:54:36
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/剑指offer/HasPath.cpp
  * @
  */
 
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
-
-#include <vector>
-#include <cstring>
-#include <queue>
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+char findchar(char *matrix, int i, int j, int rows, int cols){
+    if (i > rows || j > cols){
+        return -1;
     }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
+    return matrix[i * cols + j]
+}
 
-#endif
+bool hasPath(char* matrix, int rows, int cols, char* str)
+{
+
+}

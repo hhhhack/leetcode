@@ -24,35 +24,29 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-05 11:05:33
+ * @Date: 2020-12-07 10:34:40
+ * @LastEditTime: 2020-12-07 11:09:57
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/剑指offer/CutRope.cpp
  * @
  */
 
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
-
-#include <vector>
-#include <cstring>
-#include <queue>
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+#include "math.h"
+int cutRope(int number){
+    if (number == 2){
+        return 1;
+    }else if (number == 3){
+        return 2;
+    }else {
+        if (number % 3 == 0){
+            return (int) pow(3, number / 3);
+        }else if ( number % 3 == 1)
+        {
+            return (int) pow(3, (number / 3) - 1) * 4;
+        }else{
+            return (int) pow(3, number / 3) * 2;
+        }
     }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
-
-#endif
+    return 0;
+}

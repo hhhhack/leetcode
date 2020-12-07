@@ -24,35 +24,30 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-05 11:05:33
+ * @Date: 2020-12-05 11:01:57
+ * @LastEditTime: 2020-12-05 11:12:43
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/剑指offer/PrintFromTopToBottom.cpp
  * @
  */
-
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
-
-#include <vector>
-#include <cstring>
-#include <queue>
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+#include "ComStruct.h"
+using namespace std;
+vector<int> PrintFromTopToBottom(TreeNode* root){
+    queue<TreeNode*> treeque;
+    treeque.push(root);
+    vector<int>ret;
+    while(!treeque.empty()){
+        TreeNode *tmp = *treeque.front()->left;
+        if (tmp){
+            treeque.push(tmp);
+        }
+        tmp = *treeque.front()->right;
+        if (tmp){
+            treeque.push(tmp);
+        }
+        ret.push_back(*treeque.front()->val);
+        treeque.pop();
     }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
-
-#endif
+    return ret;
+}
