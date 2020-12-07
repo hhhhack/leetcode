@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2020-12-07 11:11:33
- * @LastEditTime: 2020-12-07 14:48:33
+ * @LastEditTime: 2020-12-07 20:02:42
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/剑指offer/MoveCount.cpp
@@ -39,7 +39,6 @@ int move(vector<vector<int>> &ret, int threshold, int rows, int cols){
     if (rows > ret.size() - 1 || cols > ret[0].size() - 1 || rows < 0 || cols < 0){
         return 0;
     }
-    cout << "run here"<<endl;
     int cont = 0;
     int trows = rows, tcols = cols;
     if (ret[rows][cols] != 0){

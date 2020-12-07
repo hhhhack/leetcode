@@ -24,34 +24,41 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-07 19:20:53
- * @LastEditTime: 2020-12-07 20:50:10
+ * @Date: 2020-12-07 20:59:55
+ * @LastEditTime: 2020-12-07 21:18:56
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/MaxInWindows.cpp
+ * @FilePath: /code/leetcode/剑指offer/EntryNodeOfLoop.cpp
  * @
  */
-
 #include "ComStruct.h"
-using namespace std;
-vector<int> maxInWindows(const vector<int>& num, unsigned int size)
+
+ListNode* EntryNodeOfLoop(ListNode* pHead)
 {
-    vector<int>ret;
-    unsigned int maxIndex = 0;
-    for(int i = 0; i < num.size(); i++){
-        if (num[i] >= num[maxIndex]){
-            maxIndex = i;
-        }else if (maxIndex == i - size){
-            maxIndex ++;
-            for (int j = maxIndex + 1; j <= i; j++){
-                if (num[j] >= num[maxIndex]){
-                    maxIndex = j;
-                }
-            }
-        }
-        if (i >= size - 1){
-            ret.push_back(num[maxIndex]);
+    if (pHead == NULL)
+    {
+        return NULL;
+    }
+    ListNode *fast = pHead, *slow = pHead;
+    while (true)
+    {
+        
+        slow = slow->next;
+        fast = fast->next;
+        if (fase == NULL)
+            break;
+        fast = fast->next;
+        if (slow == NULL || fast == NULL || slow == fast){
+            break;
         }
     }
-    return ret;
+    if (fast == NULL || slow == NULL){
+        return NULL;
+    }
+    while (pHead != fast)
+    {
+        pHead = pHead->next;
+        fast = fast->next;
+    }
+    return pHead;
 }
