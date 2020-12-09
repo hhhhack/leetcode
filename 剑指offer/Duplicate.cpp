@@ -24,37 +24,25 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-08 19:31:50
+ * @Date: 2020-12-08 10:16:48
+ * @LastEditTime: 2020-12-08 19:13:13
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/剑指offer/Duplicate.cpp
  * @
  */
 
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
+#include "ComStruct.h"
+using namespace std;
+bool duplicate(int numbers[], int length, int* duplication) {
+    vector<bool>ret(length, false);
 
-#include <vector>
-#include <cstring>
-#include <queue>
-#include <deque>
-#include <iostream>
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+    for (int i = 0; i < length; i ++){
+        if (ret[numbers[i]]){
+            *duplication = numbers[i];
+            return true;
+        }
+        ret[numbers[i]] = true;
     }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
-
-#endif
+    return false;
+}

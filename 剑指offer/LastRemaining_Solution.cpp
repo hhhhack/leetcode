@@ -24,37 +24,46 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-08 19:31:50
+ * @Date: 2020-12-08 19:14:49
+ * @LastEditTime: 2020-12-08 20:00:23
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/剑指offer/LastRemaining_Solution.cpp
  * @
  */
-
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
-
-#include <vector>
-#include <cstring>
-#include <queue>
-#include <deque>
-#include <iostream>
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+#include "ComStruct.h"
+using namespace std;
+int LastRemaining_Solution(int n, int m)
+{
+    if (n == 0){
+        return -1;
     }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
-
-#endif
+    ListNode *Head = new ListNode(0);
+    Head->next = Head;
+    ListNode *tmp = NULL;
+    for (int i = 1; i < n; i++){
+        tmp = new ListNode(i);
+        tmp->next = Head->next;
+        Head->next = tmp;
+        Head = Head->next;
+    }
+    while(Head->next != Head){
+        int k = m % n - 1;
+        if (k == -1){
+            k = m - 1;
+        }
+        for(int i = 0; i < k; i++){
+            Head = Head->next;
+        }
+        cout<<Head->next->val<<endl;
+        tmp = Head->next;
+        Head->next = tmp->next;
+        tmp->next = NULL;
+        n--;
+    }
+    return Head->val;
+}
+int main(){
+    cout << LastRemaining_Solution(5, 3) << endl;
+    return 0;
+}

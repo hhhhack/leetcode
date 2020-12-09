@@ -24,37 +24,48 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-08 19:31:50
+ * @Date: 2020-12-08 19:04:40
+ * @LastEditTime: 2020-12-08 19:11:31
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/剑指offer/FindFirstCommonNode.cpp
  * @
  */
+#include "ComStruct.h"
 
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
-
-#include <vector>
-#include <cstring>
-#include <queue>
-#include <deque>
-#include <iostream>
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+ListNode* FindFirstCommonNode( ListNode* pHead1, ListNode* pHead2) {
+    ListNode *tmp = pHead1;
+    int l1 = 0;
+    if (pHead2 == NULL || pHead1 == NULL){
+        return NULL;
     }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
-
-#endif
+    while (tmp)
+    {
+        l1++;
+        tmp = tmp->next;
+    }
+    int l2 = 0;
+    tmp = pHead2;
+    while (tmp)
+    {
+        l2++;
+        tmp = tmp->next;
+    }
+    while (pHead1 != NULL && pHead2 != NULL)
+    {
+        if (pHead2 == pHead1){
+            return pHead1;
+        }
+        if (l2 > l1){
+            pHead2 = pHead2->next;
+            l2--;
+        }else if (l1 > l2){
+            pHead1 = pHead1->next;
+            l1--;
+        }else{
+            pHead2 = pHead2->next;
+            pHead1 = pHead1->next;
+        }
+    }
+    return NULL;
+}
