@@ -24,46 +24,44 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-09 15:21:04
+ * @Date: 2020-12-16 15:46:36
+ * @LastEditTime: 2020-12-16 17:20:03
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/算法导论/heapSort.cpp
  * @
  */
 
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
+#include "Comalg.h"
+using namespace std;
+#define PARENT(i) ((i - 1)/2)
+#define LEFT(i) (2 * (i) + 1)
+#define RIGHT(i) (2 * ((i) + 1)) 
 
-#include <vector>
-#include <cstring>
-#include <queue>
-#include <deque>
-#include <iostream>
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+void max_heapity(vector<int> &input, int i){
+    int largest = i;
+    if (LEFT(i) < input.size() && input[i] < input[LEFT(i)]){
+        largest = LEFT(i);
     }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
+    if (RIGHT(i) < input.size() && input[largest] < input[RIGHT(i)]){
+        largest = RIGHT(i);
+    }
+    if (i != largest){
+        swap(input, i, largest);
+        max_heapity(input, largest);
+    }
+}
 
-struct RandomListNode {
-    int label;
-    struct RandomListNode *next = NULL;
-    struct RandomListNode *random = NULL;
+void BuildMaxHeap(vector<int>input){
+    for(int i = input.size() / 2; i >= 0; i--){
+        max_heapity(input, i);
+    }
+}
 
-    RandomListNode(int label) : label(label), next(NULL), random(NULL){
-    };
-};
+void heapSort(vector<int> &input){
+    vector<int> ret(input.size());
+    BuildMaxHeap(input);
+    for(int i = 1; i < input.size(); i++){
 
-#endif
+    }
+}

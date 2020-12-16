@@ -24,46 +24,41 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-09 15:21:04
+ * @Date: 2020-12-09 15:18:10
+ * @LastEditTime: 2020-12-09 15:37:58
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/剑指offer/RandomListNode_Clone.cpp
  * @
  */
-
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
-
-#include <vector>
-#include <cstring>
-#include <queue>
-#include <deque>
-#include <iostream>
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+#include "ComStruct.h"
+RandomListNode* Clone(RandomListNode* pHead)
+{
+    if (pHead == NULL){
+        return NULL;
     }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
-
-struct RandomListNode {
-    int label;
-    struct RandomListNode *next = NULL;
-    struct RandomListNode *random = NULL;
-
-    RandomListNode(int label) : label(label), next(NULL), random(NULL){
-    };
-};
-
-#endif
+    RandomListNode *tmp_1 = pHead, *tmp_2 = NULL;
+    while (tmp_1 != NULL)
+    {
+        tmp_2 = new RandomListNode(tmp_1->label);
+        tmp_2->next = tmp_1->next;
+        tmp_1->next = tmp_2;
+        tmp_1 = tmp_2->next;
+    }
+    tmp_1 = pHead;
+    while (tmp_1 != NULL){
+        tmp_2 = tmp_1->next;
+        tmp_2->random = tmp_1->random->next;
+        tmp_1 = tmp_2->next;
+    }
+    tmp_1 = pHead;
+    RandomListNode *ret = tmp_1->next;
+    while(tmp_1 != NULL){
+        tmp_2 = tmp_1->next;
+        tmp_1->next = tmp_2->next;
+        tmp_1 = tmp_1->next;
+        if (tmp_1 != NULL)
+            tmp_2->next = tmp_1->next;
+    }
+    return ret;
+}

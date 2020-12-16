@@ -24,46 +24,28 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-09 15:21:04
+ * @Date: 2020-12-16 09:59:30
+ * @LastEditTime: 2020-12-16 17:24:25
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/算法导论/Comalg.h
  * @
  */
 
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
-
 #include <vector>
-#include <cstring>
-#include <queue>
-#include <deque>
+#include <algorithm>
 #include <iostream>
+#include <iomanip>
+#include <ctime>
 
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
-    }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
+void inline swap(std::vector<int> &input, int i, int j){
+    int tmp = input[i];
+    input[i] = input[j];
+    input[j] =tmp;
+}
 
-struct RandomListNode {
-    int label;
-    struct RandomListNode *next = NULL;
-    struct RandomListNode *random = NULL;
+void insertSort(std::vector<int> &input);
 
-    RandomListNode(int label) : label(label), next(NULL), random(NULL){
-    };
-};
+void mergeSort(std::vector<int>& input, int i, int j);
 
-#endif
+void QuickSort(std::vector<int> &input, int i, int j);

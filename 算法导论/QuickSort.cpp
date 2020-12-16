@@ -24,46 +24,33 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-09 15:21:04
+ * @Date: 2020-12-16 17:00:23
+ * @LastEditTime: 2020-12-16 17:26:46
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /code/leetcode/算法导论/QuickSort.cpp
  * @
  */
 
-#ifndef __COMSTRUCT_H__
-#define __COMSTRUCT_H__
+#include "Comalg.h"
+using namespace std;
 
-#include <vector>
-#include <cstring>
-#include <queue>
-#include <deque>
-#include <iostream>
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+int partition(vector<int> &input, int i, int j){
+    int tmp = input[j];
+    for(int k = i; k <= j - 1; k++){
+        if (input[k] > tmp){
+            swap(input, i, k);
+            i++;
+        }
     }
-};
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
+    swap(input, i, j);
+    return i;
+}
 
-struct RandomListNode {
-    int label;
-    struct RandomListNode *next = NULL;
-    struct RandomListNode *random = NULL;
-
-    RandomListNode(int label) : label(label), next(NULL), random(NULL){
-    };
-};
-
-#endif
+void QuickSort(vector<int> &input, int i, int j){
+    if (i < j){
+        int k = partition(input, i, j);
+        QuickSort(input, i, k - 1);
+        QuickSort(input, k + 1, j);
+    }
+}
