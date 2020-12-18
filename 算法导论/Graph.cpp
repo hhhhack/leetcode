@@ -24,33 +24,11 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-16 17:00:23
- * @LastEditTime: 2020-12-17 17:32:08
+ * @Date: 2020-12-18 11:23:40
+ * @LastEditTime: 2020-12-18 11:23:41
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/算法导论/QuickSort.cpp
+ * @FilePath: /code/leetcode/算法导论/Graph.cpp
  * @
  */
 
-#include "Comalg.h"
-using namespace std;
-
-int partition(vector<int> &input, int i, int j){
-    int tmp = input[j];
-    for(int k = i; k <= j - 1; k++){
-        if (input[k] < tmp){
-            swap(input, i, k);
-            i++;
-        }
-    }
-    swap(input, i, j);
-    return i;
-}
-
-void QuickSort(vector<int> &input, int i, int j){
-    if (i < j){
-        int k = partition(input, i, j);
-        QuickSort(input, i, k - 1);
-        QuickSort(input, k + 1, j);
-    }
-}
