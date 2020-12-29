@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2020-12-19 18:17:38
- * @LastEditTime: 2020-12-23 17:21:04
+ * @LastEditTime: 2020-12-29 21:10:16
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/tcp
@@ -49,4 +49,5 @@ tcp关闭后会有一个2MSL的等待时间，确保主动发起关闭端的最�
 
 tcp流量控制
 交互数据流
+延时ack：发送ack确认包的时候等待一段时间，如果有多个返回包就一起发送
 块数据流
