@@ -25,11 +25,12 @@
  * 
  * @Author: hhhhack
  * @Date: 2020-12-28 10:42:07
- * @LastEditTime: 2020-12-28 15:23:57
+ * @LastEditTime: 2020-12-29 21:17:07
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/c++
  * @
  */
 
-
+1. return的时候函数控制权返回给调用者，会自动调用析构函数，exit直接把控制权返回给操作系统，不会直接调用析构函数，所以对c而言是一样的，c++不同
+2. 
