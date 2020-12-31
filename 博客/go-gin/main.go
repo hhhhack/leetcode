@@ -25,7 +25,7 @@
  *
  * @Author: hhhhack
  * @Date: 2020-12-30 09:50:33
- * @LastEditTime: 2020-12-31 17:15:07
+ * @LastEditTime: 2020-12-31 17:38:06
  * @LastEditors: hhhhack
  * @Description:
  * @FilePath: /code/leetcode/博客/go-gin/main.go
@@ -36,7 +36,7 @@ package main
 
 import (
 	"flag"
-	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -56,7 +56,9 @@ func init() {
 			panic("load config file fail")
 		}
 	}
-	if cfg.Section("LOG").
+	if cfg.Section("LOG") {
+		os.OpenFile(cfg.Section("LOG").key("file"))
+	}
 }
 
 func main() {
