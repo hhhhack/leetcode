@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2020-12-19 17:08:12
- * @LastEditTime: 2020-12-19 17:17:43
+ * @LastEditTime: 2021-01-18 15:57:54
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/cookie,session,token
@@ -37,4 +37,4 @@ cookie 客户端存储的信息，服务器生成，传给客户端，被客户�
 
 session 服务器给每个访问用户的身份标识，通过请求里的session信息判断当前是哪个用户，但服务器需要保存所有session，对服务器压力很大(1/存储压力，2/功能拓展不方便，3/不安全，容易被伪造)
 
-token 一组(加密)信息，客户端发起请求，服务端认证之后会把需要的信息生成token，再发送给客户端，客户端后续的请求只需要带上token，对与服务端不需要保存该token，而是解密出该token获取信息即可
+token 一组(加密)信息，客户端发起请求，服务端认证之后会把需要的信息生成token，再发送给客户端，客户端后续的请求只需要带上token，对于服务端不需要保存该token，而是解密出该token获取信息即可

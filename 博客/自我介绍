@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2021-01-13 14:45:19
- * @LastEditTime: 2021-01-13 15:13:47
+ * @LastEditTime: 2021-01-18 21:43:05
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/自我介绍
@@ -35,12 +35,23 @@
 19年毕业，进入sxf
 
 在AD部门
-负责均衡
+Application Deliver
+(应用层，传输层，链路层)负载均衡
 
-迭代开发，两个版本
-python， c++
-mysql，网络协议
-集群
+迭代开发，两个并行版本
+    第一个版本
+        带外管理(socket编程，hook api)
+        前端,后台登录认证,配置同步(后端web开发python， c++)
+        报表功能(mysql)
+        mysql，网络协议
+        配置导入
+    第二个版本
+        升级转换(c++,读缓存)
+        日志(改同步为异步,改共享内存为posix消息队列)
+        配置下发工具(go 协程,异步)
 
-CNAD， 云原生，软负载
+
+CNAD 
+Cloud Native AD
+云原生，软负载
 golang 微服务, grpc不同模块通信

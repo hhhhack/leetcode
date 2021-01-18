@@ -24,34 +24,25 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2020-12-28 09:40:40
- * @LastEditTime: 2021-01-18 16:06:03
+ * @Date: 2021-01-18 19:15:43
+ * @LastEditTime: 2021-01-18 20:36:11
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/博客/pam
+ * @FilePath: /code/leetcode/博客/一致性算法
  * @
  */
 
+redis:
+    数据类型:字符串，
 
-linux pam
-提供一系列api控制系统用户登录的库
+一致性hash算法:redis
+    每个节点计算hash,分布在0~2^32的环上
+    采用同样的算法计算数据,
+    数据落在环上,向后寻找,找到就读或写
+    一台设备挂了,仅它后面的一台设备受影响
+    加入一台设备也只影响命中该区间的数据,
+    在节点较少的时候节点影响会加大,可以使用虚拟节点
 
-account 提供账号验证服务，当前用户是否过期，是否有权限访问当前服务
 
-auth 校验用户的凭证(如密码或者硬件秘钥，生物信息等)
-
-password 更新用户认证机制，通常和auth关联，比如更换密码，输入指纹之类的
-
-session 维护会话开始前和关闭后的操作，给用户提供了一个操作会话的钩子
-
-参数
-
-required 对应的pam失败会导致整个模块失败，但结果会保留到堆栈里所有pam运行完
-
-requisite 失败就立即返回结果，但容易暴露是哪个模块通失败了
-
-sufficient 对应pam成功则立即返回成功，不尝试后续认证，失败则不影响后续认证
-
-include
-
-substack
+zab:
+    

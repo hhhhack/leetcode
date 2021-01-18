@@ -25,7 +25,7 @@
  *
  * @Author: hhhhack
  * @Date: 2021-01-09 11:34:13
- * @LastEditTime: 2021-01-13 14:41:07
+ * @LastEditTime: 2021-01-18 16:06:14
  * @LastEditors: hhhhack
  * @Description:
  * @FilePath: /code/leetcode/博客/go_tool/open22345Port.go
@@ -97,7 +97,7 @@ func sendRequest(config deviceInfo, ch chan<- int) int {
 
 	loginRequest, err := http.NewRequest(http.MethodPost, loginUrl, bytes.NewReader([]byte(loginBody)))
 	if err != nil {
-		log.Printf("new a login request error")
+		log.Printf("new a login request error ip is %v ", config.ipa)
 		fmt.Println(err)
 		return -1
 	}

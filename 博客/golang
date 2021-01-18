@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2021-01-08 10:48:31
- * @LastEditTime: 2021-01-08 10:51:23
+ * @LastEditTime: 2021-01-18 17:30:38
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/golang
@@ -36,3 +36,28 @@
     1.不可偏移，运算
     2.new创建基础类型的指针，bool，string，int
     3.make针对切片，chan，map，输出对应类型而非指针
+    4.chan, map, sclip是引用类型，需要make分配空间
+
+并发:
+go最大特点并发(包括实现和调度，原生支持并行)简单
+    1.go 关键字启动协程
+    2.sync.WaitGroup同步协程(Add(), Done(), Wait())
+    3.GPM
+        G:goroutine
+        P:协程管理器，调度着一组协程
+        M:实际运行着的线程，每个协程实际试绑定到M上执行
+        G阻塞时对应P会新建M，再把其余G移到新M上
+    4.可增长栈，消耗少，调度简单快捷
+
+    channel:
+        1.定义:var value chan valueType
+        2.操作:send ch<-value, rcv value<-ch, close close(ch),向nil发送和读取会阻塞,向满的ch发送和空的ch读取会阻塞
+        3.关闭通道的发送和关闭会引发panic,读取会读取剩余值,没有剩余值会获取零值
+        4.无缓存ch:读时等同于空的有缓存ch,写时等于满的有缓存ch
+        5.有缓存ch:
+        6.单向ch:
+    锁:
+        1.sync包Mutex, RWMutex
+        2.sync.Once包裹的函数只执行一次
+        3.sync.map并发安全的
+        4.atomic包,原子操作
