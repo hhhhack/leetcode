@@ -24,29 +24,16 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2021-01-04 10:35:52
- * @LastEditTime: 2021-01-21 16:48:41
+ * @Date: 2021-01-21 17:08:41
+ * @LastEditTime: 2021-01-21 17:08:57
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/博客/go-gin/myapp.ini
+ * @FilePath: /code/leetcode/博客/异步io
  * @
  */
 
+select
 
-app_mode=development
+poll
 
-[server]
-port = 443
-
-[log]
-# log
-logpath=/log/myapp.log
-loglevel=error
-rlog=enable
-
-
-[database]
-username=root
-password=root
-host=localhost
-dbname=articleDB
+epoll

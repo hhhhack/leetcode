@@ -25,21 +25,39 @@
  * 
  * @Author: hhhhack
  * @Date: 2021-01-21 09:53:56
- * @LastEditTime: 2021-01-21 11:27:51
+ * @LastEditTime: 2021-01-21 17:08:11
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/go-gin/mysql_init
  * @
  */
 
-CREATE DATABASE IF NOT EXISTS `articalDB`;
+CREATE DATABASE IF NOT EXISTS `articleDB`;
 
-USE articalDB;
+USE articleDB;
 
 CREATE TABLE IF NOT EXISTS `USER`(
-    `USER_ID` int(10) unsigned NOT NULL auto_increment
-    `USER_NAME` varchar(64) BINARY NOT NULL DEFAULT ''
-    `USER_ROLE_ID` int(10) unsigned NOT NULL DEFAULT 0
-    `USER_KEY` varchar(512) BINARY NOT NULL
+    `USER_ID` int(10) unsigned NOT NULL auto_increment,
+    `USER_NAME` varchar(64) NOT NULL DEFAULT '',
+    `USER_ROLE_ID` int(10) unsigned NOT NULL DEFAULT 0,
+    `USER_KEY` varchar(512) NOT NULL,
     PRIMARY KEY  (`USER_ID`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `AUTHOR`(
+    `AUTHOR_ID` int(10) unsigned NOT NULL auto_increment,
+    `AUTHOR_NAME` varchar(64) NOT NULL DEFAULT '佚名',
+    PRIMARY KEY (`AUTHOR_ID`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ARTICLE`(
+    `article_id` int(10) unsigned NOT NULL auto_increment,
+    `content` text NOT NULL,
+    `create_time` date not null,
+    `last_edit_time` date not null,
+    `author_id` int(610) unsigned not null DEFAULT 0,
+    PRIMARY KEY (`article_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE ARTICLE ADD FOREIGN KEY (`author_id`) REFERENCES AUTHOR(`AUTHOR_ID`)
+

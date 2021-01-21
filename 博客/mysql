@@ -24,29 +24,39 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2021-01-04 10:35:52
- * @LastEditTime: 2021-01-21 16:48:41
+ * @Date: 2021-01-21 16:42:16
+ * @LastEditTime: 2021-01-21 17:14:04
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/博客/go-gin/myapp.ini
+ * @FilePath: /code/leetcode/博客/mysql
  * @
  */
 
+sql语句
 
-app_mode=development
+    creat database DBname;
 
-[server]
-port = 443
+    drop database DBname;
 
-[log]
-# log
-logpath=/log/myapp.log
-loglevel=error
-rlog=enable
+    use DBname;
 
+    creat table TBname;
 
-[database]
-username=root
-password=root
-host=localhost
-dbname=articleDB
+    drop table TBname;
+
+数据类型
+
+    整型
+
+    浮点型
+
+    日期
+
+    字符串
+
+索引
+    B树索引
+
+    hash索引
+
+    

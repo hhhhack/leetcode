@@ -1,52 +1,46 @@
 /*
- * 
+ *
  * 　　┏┓　　　┏┓+ +
  * 　┏┛┻━━━┛┻┓ + +
- * 　┃　　　　　　　┃ 　
+ * 　┃　　　　　　　┃
  * 　┃　　　━　　　┃ ++ + + +
  *  ████━████ ┃+
  * 　┃　　　　　　　┃ +
  * 　┃　　　┻　　　┃
  * 　┃　　　　　　　┃ + +
  * 　┗━┓　　　┏━┛
- * 　　　┃　　　┃　　　　　　　　　　　
+ * 　　　┃　　　┃
  * 　　　┃　　　┃ + + + +
  * 　　　┃　　　┃
  * 　　　┃　　　┃ +  神兽保佑
- * 　　　┃　　　┃    代码无bug　　
- * 　　　┃　　　┃　　+　　　　　　　　　
+ * 　　　┃　　　┃    代码无bug
+ * 　　　┃　　　┃　　+
  * 　　　┃　 　　┗━━━┓ + +
  * 　　　┃ 　　　　　　　┣┓
  * 　　　┃ 　　　　　　　┏┛
  * 　　　┗┓┓┏━┳┓┏┛ + + + +
  * 　　　　┃┫┫　┃┫┫
  * 　　　　┗┻┛　┗┻┛+ + + +
- * 
- * 
+ *
+ *
  * @Author: hhhhack
- * @Date: 2021-01-04 10:35:52
- * @LastEditTime: 2021-01-21 16:48:41
+ * @Date: 2021-01-21 17:46:28
+ * @LastEditTime: 2021-01-21 17:57:28
  * @LastEditors: hhhhack
- * @Description: 
- * @FilePath: /code/leetcode/博客/go-gin/myapp.ini
+ * @Description:
+ * @FilePath: /code/leetcode/博客/go-gin/routes/base.go
  * @
  */
 
+package routes
 
-app_mode=development
+type BaseRouteHandle struct {
+	Context gin.Context
+}
 
-[server]
-port = 443
-
-[log]
-# log
-logpath=/log/myapp.log
-loglevel=error
-rlog=enable
-
-
-[database]
-username=root
-password=root
-host=localhost
-dbname=articleDB
+interface Handle{
+	Get(gin.Context)
+	Put(gin.Context)
+	Post(gin.Context)
+	Delete(gin.Context)
+}
