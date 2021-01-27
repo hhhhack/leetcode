@@ -25,7 +25,7 @@
  *
  * @Author: hhhhack
  * @Date: 2021-01-21 11:28:44
- * @LastEditTime: 2021-01-21 21:15:06
+ * @LastEditTime: 2021-01-27 11:42:04
  * @LastEditors: hhhhack
  * @Description:
  * @FilePath: /code/leetcode/博客/go-gin/pkg/init/init.go
@@ -35,39 +35,70 @@
 package init
 
 import (
-	"fmt"
-
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"go.uber.org/zap"
+	"github.com/spf13/viper"
 )
 
-type DATABASE struct {
-	username string
+var AppMode int
+
+type ServerConf struct {
+	host string
+	port int
+}
+
+type DbConf struct {
 	host     string
+	user     string
 	password string
 	dbname   string
 }
 
-var database = &DATABASE{}
+var SvrCnf = &ServerConf{}
 
-func init() {
-	log, err := zap.NewProduction()
-	if err == nil {
-		fmt.Printf("init log fail %v", err)
-		return
-	}
+func ParseIni() {
+	ini := viper.New()
+	ini.SetDefault("", "localhost")
+	ini.SetDefault
 
 }
 
-func SetUp() {
-	db, err := gorm.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
-		database.username,
-		database.password,
-		database.host,
-		database.dbname))
-	if err == nil {
-		fmt.Printf("open db fail %#v", err)
-	}
-	db.AutoMigrate(&DATABASE{})
-}
+// import (
+// 	"fmt"
+
+// 	"github.com/jinzhu/gorm"
+// 	_ "github.com/jinzhu/gorm/dialects/mysql"
+// 	"go.uber.org/zap"
+// )
+
+// type DATABASE struct {
+// 	username string
+// 	host     string
+// 	password string
+// 	dbname   string
+// }
+
+// var database = &DATABASE{}
+
+// func init() {
+// 	log, err := zap.NewProduction()
+// 	if err == nil {
+// 		fmt.Printf("init log fail %v", err)
+// 		return
+// 	}
+
+// }
+
+// func DataBaseSetUp() {
+// 	db, err := gorm.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
+// 		database.username,
+// 		database.password,
+// 		database.host,
+// 		database.dbname))
+// 	if err == nil {
+// 		fmt.Printf("open db fail %#v", err)
+// 	}
+// 	db.AutoMigrate(&DATABASE{})
+// }
+
+// func ParseConfig(){
+
+// }

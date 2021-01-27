@@ -24,46 +24,29 @@
  *
  *
  * @Author: hhhhack
- * @Date: 2020-12-30 09:50:33
- * @LastEditTime: 2021-01-27 17:23:53
+ * @Date: 2021-01-27 16:19:16
+ * @LastEditTime: 2021-01-27 16:54:03
  * @LastEditors: hhhhack
  * @Description:
- * @FilePath: /code/leetcode/博客/go-gin/main.go
+ * @FilePath: /code/leetcode/博客/go-gin/routes/user.go
  * @
  */
 
-package main
+package routes
 
 import (
 	"fmt"
 	"net/http"
-	"routes"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
-func login(c *gin.Context) {
-	fmt.Printf("%s \n", c.Param("user"))
+type User struct {
+	*Base
 }
 
-func main() {
-	r := routes.New()
-	r.Use()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.POST("/login", login)
-
-	r.Register("/usr/*name", &routes.User{})
-	srv := &http.Server{Addr: ":443",
-		Handler:        r,
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
-		MaxHeaderBytes: 1 << 20,
-	}
-	srv.ListenAndServe()
-
+func (user *User) get(c *gin.Context) {
+	name := c.Param("name")
+	fmt.Printf("name is %s \n", name)
+	c.String(http.StatusOK, "Hello, %s ", name)
 }
