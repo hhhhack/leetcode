@@ -1,0 +1,47 @@
+/*
+ * 
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃ 　
+ * 　┃　　　━　　　┃ ++ + + +
+ *  ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃　　　　　　　　　　　
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽保佑
+ * 　　　┃　　　┃    代码无bug　　
+ * 　　　┃　　　┃　　+　　　　　　　　　
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * 
+ * 
+ * @Author: hhhhack
+ * @Date: 2021-01-29 16:52:09
+ * @LastEditTime: 2021-01-29 17:06:47
+ * @LastEditors: hhhhack
+ * @Description: 
+ * @FilePath: \go_tool\conf.proto
+ * @
+ */
+syntax = "proto3";
+package main;
+
+message version_info_t {
+    optional string ver_name        = 1;
+    optional string login_uri       = 2;
+    optional string default_pass    = 3;
+    optional string request_body    = 4;
+}
+
+message version_lists {
+    repeated version_info_t vers    = 1;
+    optional uint32 ver_conts       = 2;
+}
