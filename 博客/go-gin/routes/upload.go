@@ -24,46 +24,42 @@
  *
  *
  * @Author: hhhhack
- * @Date: 2020-12-30 09:50:33
- * @LastEditTime: 2021-02-01 11:47:17
+ * @Date: 2021-01-30 11:32:55
+ * @LastEditTime: 2021-02-01 11:49:53
  * @LastEditors: hhhhack
  * @Description:
- * @FilePath: /code/leetcode/博客/go-gin/main.go
+ * @FilePath: /code/leetcode/博客/go-gin/routes/upload.go
  * @
  */
 
-package main
+package routes
 
 import (
 	"fmt"
+	"log"
+	"models"
 	"net/http"
-	"routes"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
-func login(c *gin.Context) {
-	fmt.Printf("%s \n", c.Param("user"))
+type Upload struct {
+	*Base
 }
 
-func main() {
+func init() {
+	RegisterError(ERROR_FILENAME_IS_NOT_SAFE, "file name %s has dangerous char", 400)
+}
 
-	routes.MyEngine.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	routes.MyEngine.POST("/login", login)
-
-	routes.MyEngine.Register("/usr/*name", &routes.User{})
-	routes.MyEngine.Refister("/upload/*name" &routes.Upload{})
-	srv := &http.Server{Addr: ":443",
-		Handler:        r,
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   10 * time.Second,
-		MaxHeaderBytes: 1 << 20,
+func (upload *Upload) post(c *gin.Context) {
+	file, _ := c.FormFile("file")
+	log.Println(file.Filename)
+	if models.IsDangerousStr(file.Filename) {
+		c.String(ErrorMsg[ERROR_FILENAME_IS_NOT_SAFE].ErrorCode,
+			fmt.Sprintf(ErrorMsg[ERROR_FILENAME_IS_NOT_SAFE].ErrorInfo), file.Filename)
 	}
-	srv.ListenAndServe()
+	// Upload the file to specific dst.
+	c.SaveUploadedFile(file, dst)
 
+	c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 }

@@ -25,10 +25,10 @@
  *
  * @Author: hhhhack
  * @Date: 2021-01-21 11:28:44
- * @LastEditTime: 2021-01-27 11:42:04
+ * @LastEditTime: 2021-01-30 11:26:26
  * @LastEditors: hhhhack
  * @Description:
- * @FilePath: /code/leetcode/博客/go-gin/pkg/init/init.go
+ * @FilePath: /code/leetcode/博客/go-gin/models/init.go
  * @
  */
 
@@ -57,8 +57,6 @@ var SvrCnf = &ServerConf{}
 func ParseIni() {
 	ini := viper.New()
 	ini.SetDefault("", "localhost")
-	ini.SetDefault
-
 }
 
 // import (
