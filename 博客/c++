@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2020-12-28 10:42:07
- * @LastEditTime: 2021-02-01 19:28:09
+ * @LastEditTime: 2021-02-01 21:51:50
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/c++
@@ -144,5 +144,5 @@ sizeof(D): 48    align: 8      |          |       D::f0()       |
         可以重载,
         不能为虚函数,不能有返回值
         有初始化列表和函数体内赋值两种初始化方式,初始化列表效率更高
-        函数体内能使用this指针,初始化列表不行,
+        函数体内能使用this指针,初始化列表不行,构造函数是对对象赋值,所以已经有对象了
     2. 默认拷贝构造函数 -> 
