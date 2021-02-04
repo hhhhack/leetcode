@@ -1,58 +1,37 @@
 /*
- *
+ * 
  * 　　┏┓　　　┏┓+ +
  * 　┏┛┻━━━┛┻┓ + +
- * 　┃　　　　　　　┃
+ * 　┃　　　　　　　┃ 　
  * 　┃　　　━　　　┃ ++ + + +
  *  ████━████ ┃+
  * 　┃　　　　　　　┃ +
  * 　┃　　　┻　　　┃
  * 　┃　　　　　　　┃ + +
  * 　┗━┓　　　┏━┛
- * 　　　┃　　　┃
+ * 　　　┃　　　┃　　　　　　　　　　　
  * 　　　┃　　　┃ + + + +
  * 　　　┃　　　┃
  * 　　　┃　　　┃ +  神兽保佑
- * 　　　┃　　　┃    代码无bug
- * 　　　┃　　　┃　　+
+ * 　　　┃　　　┃    代码无bug　　
+ * 　　　┃　　　┃　　+　　　　　　　　　
  * 　　　┃　 　　┗━━━┓ + +
  * 　　　┃ 　　　　　　　┣┓
  * 　　　┃ 　　　　　　　┏┛
  * 　　　┗┓┓┏━┳┓┏┛ + + + +
  * 　　　　┃┫┫　┃┫┫
  * 　　　　┗┻┛　┗┻┛+ + + +
- *
- *
+ * 
+ * 
  * @Author: hhhhack
- * @Date: 2021-01-28 17:43:51
- * @LastEditTime: 2021-02-04 11:50:49
+ * @Date: 2021-02-02 15:50:13
+ * @LastEditTime: 2021-02-03 11:38:38
  * @LastEditors: hhhhack
- * @Description:
- * @FilePath: \go_tool\main.go
+ * @Description: 
+ * @FilePath: /code/leetcode/博客/LRU
  * @
  */
 
-package main
-
-import (
-	"fmt"
-	"initConf"
-	"logger"
-	"sendRequest"
-)
-
-func init() {
-	initConf.InitConf()
-	logger.InitLog()
-}
-
-func main() {
-	initConf.ReadConf()
-	fmt.Println(initConf.Device)
-	for _, device := range initConf.Device {
-		initConf.Wg.Add(1)
-		fmt.Println(device)
-		go sendRequest.SendRequest(device)
-	}
-	initConf.Wg.Wait()
-}
+1. 数组实现: 每个数据保存一个时间戳,访问数据时所有时间戳+1,被访问的数据置为0,数组满时删除时间戳最大的
+2. 链表实现: 每次访问的数据放在链表头,空间满了就删除最后一个
+3. hash表实现:

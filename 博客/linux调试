@@ -1,0 +1,55 @@
+/*
+ * 
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃ 　
+ * 　┃　　　━　　　┃ ++ + + +
+ *  ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃　　　　　　　　　　　
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽保佑
+ * 　　　┃　　　┃    代码无bug　　
+ * 　　　┃　　　┃　　+　　　　　　　　　
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * 
+ * 
+ * @Author: hhhhack
+ * @Date: 2021-02-02 14:44:15
+ * @LastEditTime: 2021-02-02 15:46:48
+ * @LastEditors: hhhhack
+ * @Description: 
+ * @FilePath: /code/leetcode/博客/linux调试
+ * @
+ */
+
+1. 网络: netstat , tcpdump, ip, iptraf
+2. strace 跟踪系统调用
+3. gdb 调试进程
+4. perf linux性能查看
+5. /proc/ 查看设备信息
+6. ipcs
+7. df/du 查看磁盘状态
+8. free 查看内存
+9. lsof 查看vfs
+10. ltrace 
+11. pidof 查看进程信息
+12. valgrind 内存泄露跟踪
+    两种使用方式:
+        --tool=<toolname>
+            memcheck(检查内存使用情况,包括为初始化,内存未释放,内存越界)
+            callgrind(收集运行时数据)
+            cachegrind(模拟cpu缓存,分析缓存的命中和丢失)
+            helgrind(检查多线程中的竞争问题)
+            massif(堆栈分析器)
+        --option
+13. iostat, pidstat查看设备io状态

@@ -25,7 +25,7 @@
  *
  * @Author: hhhhack
  * @Date: 2021-01-28 21:53:29
- * @LastEditTime: 2021-01-29 14:40:31
+ * @LastEditTime: 2021-02-04 11:49:36
  * @LastEditors: hhhhack
  * @Description:
  * @FilePath: \go_tool\initConf\init.go
@@ -85,24 +85,25 @@ func parseConf(line string) DeviceInfo {
 	}
 	if strings.Index(line, ":") != -1 {
 		confs := strings.Split(line, ":")
-		fmt.Println("conf is :", confs)
+		fmt.Printf("conf is :%v conf len is %d ", confs, len(confs))
 		if len(confs) < 3 {
 			log.Printf("conf is illagal")
 			return DeviceInfo{"", "", "", 0, false}
-		} else {
-			if len(confs) > 3 {
-				port, err = strconv.Atoi(confs[3])
-				if err != nil {
-					port = 443
-				}
-			}
-			if len(confs) > 4 {
-				if confs[4] == "false" {
-					op = false
-				}
+		}
+		if len(confs) > 3 {
+			log.Printf("more than 3 field confs 4 is %v", confs[3])
+			port, err = strconv.Atoi(confs[3])
+			if err != nil {
+				port = 443
 			}
 		}
-
+		if len(confs) > 4 {
+			log.Printf("more than 4 field confs 5 is %v", confs[4])
+			if strings.TrimSpace(confs[4]) == "false" {
+				op = false
+			}
+		}
+		log.Printf("user is %s pass is %s host is %s port is % d, op is %v ", confs[0], confs[1], confs[2], port, op)
 		return DeviceInfo{strings.TrimSpace(confs[0]), strings.TrimSpace(confs[1]), strings.TrimSpace(confs[2]), port, op}
 	}
 	return DeviceInfo{"admin", "admin", strings.TrimSpace(line), port, op}
@@ -117,6 +118,7 @@ func ReadConf() {
 		log.Fatalf("read conf fail %v, file path is %s ", err, *ConfPath)
 	}
 	reader := bufio.NewReader(conf)
+	Device = make([]DeviceInfo, 0)
 	for {
 		line, err := reader.ReadString('\n') //注意是字符
 		if err == io.EOF {

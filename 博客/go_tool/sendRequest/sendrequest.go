@@ -25,7 +25,7 @@
  *
  * @Author: hhhhack
  * @Date: 2021-01-28 17:45:21
- * @LastEditTime: 2021-01-29 17:31:02
+ * @LastEditTime: 2021-02-04 11:51:06
  * @LastEditors: hhhhack
  * @Description:
  * @FilePath: \go_tool\sendRequest\sendrequest.go
@@ -58,10 +58,8 @@ import (
  * @param {*initConf.DeviceInfo} config
  * @return {*}
  */
-func SendRequest(config *initConf.DeviceInfo) int {
-	if config == nil {
-		return -1
-	}
+func SendRequest(config initConf.DeviceInfo) int {
+
 	defer initConf.Wg.Done()
 	loginUrl := fmt.Sprintf("https://%s:%d/api/ad/current-version/login", config.Ipadderss, config.Httpport)
 	logger.MyLogger.Info("init login url",
@@ -85,13 +83,10 @@ func SendRequest(config *initConf.DeviceInfo) int {
 	tr := &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}} //如果需要测试自签名的证书 这里需要设置跳过证书检测 否则编译报错
 	client := http.Client{Transport: tr, Timeout: time.Duration(10 * time.Second)}
 	var resp *http.Response
-	go func() {
-		resp, err = client.Do(loginRequest)
-		if err != nil {
-			fmt.Println(err)
-		}
-	}()
-
+	resp, err = client.Do(loginRequest)
+	if err != nil {
+		fmt.Println(err)
+	}
 	if resp.StatusCode >= 300 {
 		logger.MyLogger.Fatal("login err",
 			zap.Int("Status_Code", resp.StatusCode),
