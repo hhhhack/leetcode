@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2020-12-28 10:42:07
- * @LastEditTime: 2021-02-02 14:44:58
+ * @LastEditTime: 2021-02-23 20:50:48
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/c++
@@ -179,10 +179,10 @@ new和malloc的比较：
 对象创建（new）过程：
 
 (1).通过operator new申请内存；
-(2).使用placement new调用构造函数（简单类型忽略此步）；
+(2).使用placement new调用构造函数(简单类型忽略此步);
 (3).返回内存指针。
 
-new的三种形态：new operator，operator new，placement new
+new的三种形态：new operator,operator new,placement new
   (1).new operator：上面所说的new就是new operator，共有三个步骤组成（申请内存，调用构造函数，返回内存指针），对于申请内存步骤是通过运算符new(operator new)完成的，对于调用什么构造函数，可以由placement new决定；
   (2).operator new：像普通运算符一样可以被重载，operator new会去申请内存，申请失败的时候会调用new_handler处理，这是一个循环的过程，如果new_handler不抛出异常，会一直循环申请内存，直到成功；
   (3).placement new：用于定位构造函数，在指定的内存地址上用指定类型的构造函数构造对象
