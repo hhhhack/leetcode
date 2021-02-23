@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2021-01-21 16:42:16
- * @LastEditTime: 2021-01-26 11:06:49
+ * @LastEditTime: 2021-02-23 19:40:46
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/mysql
@@ -56,6 +56,10 @@ sql语句
 
 索引
     B树索引
+        b树和b+树的区别:
+            b树的子节点包含数据，b+树只有叶子节点包含数据
+            b+树优点:b+树能一次读取更多的索引,叶子节点使用链表相连便于顺序查找
+            b树优点:b树如果在中间子节点查到数据,相对会快很多,b+树必须查到叶子节点
 
     hash索引
 
@@ -78,3 +82,8 @@ sql语句
             可重复读(mysql默认) (幻读，读取范围数据时，如果中间插入一段，再读取时会有幻行)
             串行华执行(所有读取的数据加锁，开销极大)
     D(持久性)事务执行完成是要长期生效保存的
+
+mysql性能查看:
+    1.explain
+        1.id
+    2.performance schema

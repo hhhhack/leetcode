@@ -36,6 +36,8 @@ package init
 
 import (
 	"github.com/spf13/viper"
+
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var AppMode int

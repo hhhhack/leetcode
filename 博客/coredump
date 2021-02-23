@@ -1,0 +1,76 @@
+/*
+ * 
+ * 　　┏┓　　　┏┓+ +
+ * 　┏┛┻━━━┛┻┓ + +
+ * 　┃　　　　　　　┃ 　
+ * 　┃　　　━　　　┃ ++ + + +
+ *  ████━████ ┃+
+ * 　┃　　　　　　　┃ +
+ * 　┃　　　┻　　　┃
+ * 　┃　　　　　　　┃ + +
+ * 　┗━┓　　　┏━┛
+ * 　　　┃　　　┃　　　　　　　　　　　
+ * 　　　┃　　　┃ + + + +
+ * 　　　┃　　　┃
+ * 　　　┃　　　┃ +  神兽保佑
+ * 　　　┃　　　┃    代码无bug　　
+ * 　　　┃　　　┃　　+　　　　　　　　　
+ * 　　　┃　 　　┗━━━┓ + +
+ * 　　　┃ 　　　　　　　┣┓
+ * 　　　┃ 　　　　　　　┏┛
+ * 　　　┗┓┓┏━┳┓┏┛ + + + +
+ * 　　　　┃┫┫　┃┫┫
+ * 　　　　┗┻┛　┗┻┛+ + + +
+ * 
+ * 
+ * @Author: hhhhack
+ * @Date: 2021-02-06 19:49:17
+ * @LastEditTime: 2021-02-23 09:52:37
+ * @LastEditors: hhhhack
+ * @Description: 
+ * @FilePath: /code/leetcode/博客/coredump
+ * @
+ */
+
+coredump包含:
+    运行时内存
+    寄存器状态
+    堆栈指针
+    内存管理状态
+    函数调用堆栈
+
+ulimit -c 查看状态
+ulimit -c unlimited 开启
+/proc/sys/kernel/core_pattern 设置
+    %p  出Core进程的PID
+    %u  出Core进程的UID
+    %s  造成Core的signal号
+    %t  出Core的时间，从1970-01-0100:00:00开始的秒数
+    %e  出Core进程对应的可执行文件名
+
+/proc/<pid>/coredump_filter 选择core的内容
+    - (bit 0) anonymous private memory
+    - (bit 1) anonymous shared memory
+    - (bit 2) file-backed private memory
+    - (bit 3) file-backed shared memory
+    - (bit 4) ELF header pages in file-backed private memory areas (it is effective only if the bit 2 is cleared)
+    - (bit 5) hugetlb private memory
+    - (bit 6) hugetlb shared memory
+    - (bit 7) DAX private memory
+    - (bit 8) DAX shared memory
+
+在收到信号的时候do_signal()会判断是否core,需要core的时候回调用do_coredump()生成core文件核心有binfmt->core_dump()实现
+
+产生core的信号:
+    sigabrt 调用abort函数时,进程异常关闭
+    sigbus  硬件故障
+    sigemt  硬件故障
+    sigfpe  算术异常(除0,浮点溢出)
+    sigill  非法硬件指令
+    sigiot  硬件故障
+    sigquit 终端推出
+    sigsegv 访问无效内存
+    sigsys  访问无效系统调用
+    sigtrap 硬件错误
+    sigxcpu 超过cpu限制
+    sigxfsz 超过文件长度限制

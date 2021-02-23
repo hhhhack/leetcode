@@ -24,13 +24,20 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2021-02-02 15:57:32
- * @LastEditTime: 2021-02-23 09:52:28
+ * @Date: 2021-02-07 09:58:48
+ * @LastEditTime: 2021-02-07 11:25:27
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/博客/RCU
+ * @FilePath: /code/leetcode/博客/elf文件
  * @
  */
 
-RCU :
-    运行读操作在没有任何锁及原子操作的的情况下进行
+                [      elf header      ]
+                [ program header table ]
+    代码段                          [        .txt          ]
+    只读数据                        [       .rodata        ]
+    已初始化全局,静态变量            [        .data         ]
+    未初始化全局变量                 [        .bbs          ]
+    符号表                          [      .symbtable      ]
+                        ....
+                [ section header table ]

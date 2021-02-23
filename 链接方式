@@ -24,13 +24,12 @@
  * 
  * 
  * @Author: hhhhack
- * @Date: 2021-02-02 15:57:32
- * @LastEditTime: 2021-02-23 09:52:28
+ * @Date: 2021-02-07 09:55:05
+ * @LastEditTime: 2021-02-23 09:53:01
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/博客/RCU
+ * @FilePath: /code/leetcode/链接方式
  * @
  */
 
-RCU :
-    运行读操作在没有任何锁及原子操作的的情况下进行
+动态链接
