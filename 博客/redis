@@ -25,10 +25,119 @@
  * 
  * @Author: hhhhack
  * @Date: 2021-02-23 21:04:17
- * @LastEditTime: 2021-02-23 21:04:18
+ * @LastEditTime: 2021-02-26 09:03:31
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/redis
  * @
  */
 
+数据类型:
+    string
+    hash
+    list
+    set
+    sort set(跳跃表,)
+
+集群:
+    1.主备
+        主机接受写请求,备机接受读请求
+        特点,简单,但是主机一旦挂了,就没法写了
+    2.哨兵模式
+        主备的基础上发展的,有一个哨兵检测集群状态,主机挂了选个备机,哨兵也可以是集群防止哨兵挂了
+    3.集群模式
+        hash一致性算法
+
+数据结构:
+    sds(简单字符串)
+        二进制安全，O(1)获取长度，不会越界
+        {
+            int free;
+            int len;
+            void *buf;
+        }
+    list链表
+        双端，无环，可自定义操作
+        {
+            list *next;
+            list *pre;
+            void *val;
+        }
+        {
+            list *head;
+            list *tail;
+            void *(*dup)(void *ptr);
+            void (*free)(void *ptr);
+            int (*match)(void *ptr, void *key);
+        }
+    dict字典
+
+        dictht{//hash表
+            dictEntry **table;
+            //hash表大小
+            unsigned long size;
+            unsigned long sizemask;
+            //已使用大小
+            unsigned long used;
+        }
+        dictEntry{
+            void *key;
+            union{
+                void *ptr;
+                uint64 ;
+                int64;
+            }v;
+            dictEntry *next;
+        }
+        dictType{
+            unsigned int (*hashFunction)(const void *key);
+            void *(*keyDup)(void *private, void *key);
+            void *(*valDup)(void *private, void *obj);
+            int (*keyCompare)(void *private, const void *key1, const void *key2);
+            void (*keyDestructor)(void *private, void *key);
+            void (*valDestructor)(void *private, void *obj);
+        }
+        dict{//字典
+            dictType *type;//为不同类型键值对进行的操作
+            void *private;
+            ditcth ht[2]
+        }
+        rehash
+            1.根据当前操作和used的大小决定ht[1]的大小,扩容则是第一个>=ht[0].used * 2的2^n的数,缩容则是第一个>=ht[0].used 的2^n
+            2.把ht[0]上的数据重新hash到ht[1]上
+            3.把hht[1]置为ht[0],ht[0]释放,ht[1]重新分配空hash表
+        渐进rehash
+            1.字典维护两个hash表,和一个rehashidx
+            2.当字典增删改的时候在两个hash表上进行,同时把ht[0]上的数据ht[1]上(删除两个都删,增加,修改只有ht[1]执行)
+            3.当ht[0]空了之后执行rehash的后续操作
+    skiplist跳跃表
+        {
+            header
+            tail
+            level
+            length  
+        }
+        zskiplistNode{
+            struct zskiplistLevel{
+                struct zskiplistNode *forward;
+                unsigned int span;
+            }level[];
+            struct zskiplistNode *backward;
+            double score;
+            robj *obj;
+        }
+    intset整数集合
+        intset{
+            //支持升级,不支持降级
+            uint32_t encoding;
+            uint32_t length;//元素个数
+            int8_t contents[];//只是这样定义，实际存的并不是int8_t而是按照编码方式存，有序保存
+        }
+    ziplist压缩列表
+        {
+            uint32_t zlbytes;//整个压缩列表长度
+            uint32_t zltail;//最后一个元素的位置
+            uint16_t zllen;//元素个数(小于65545时是元素个数,否则需要遍历才能获取元素个数)
+            entry....
+            uint8_t zlend;//压缩列表结尾符
+        }
