@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2021-02-23 21:04:17
- * @LastEditTime: 2021-02-26 09:03:31
+ * @LastEditTime: 2021-03-02 10:39:22
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/redis
@@ -141,3 +141,19 @@
             entry....
             uint8_t zlend;//压缩列表结尾符
         }
+
+redis备份
+    RDB(快照) 备份慢,恢复快
+        通过save配置决定同步策略
+            save 300 20类似这种
+        SAVE (阻塞服务进程)
+        BGSAVE (创建子进程处理备份,父进程处理业务)
+            在BGSAVE期间SAVE和BGSAVE会被拒绝,BGREWRITEAOF只能等BGSAVE执行完再执行,如果BGREWRITEAOF在执行则拒绝BGSAVE
+    AOF(日志) 备份快,恢复慢,文件大
+        三种同步模式
+            always:每次都执行,最慢,但最全
+            everysec:每秒执行,较快,只丢失最多1s
+            no:依靠操作系统自动同步,最快,但是丢失信息最多
+        文件恢复是通过创建伪客户端执行aof文件里的命令
+        文件重写
+        重写是直接读取缓存信息,如果一个键值对的数据过多会分成多个命令

@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2020-12-19 17:18:59
- * @LastEditTime: 2021-02-26 10:54:14
+ * @LastEditTime: 2021-03-02 21:45:33
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/https
@@ -106,7 +106,54 @@ http
                   | Value String (Length octets)  |
                   +-------------------------------+
                   和第三种类似,只是同样索引的前四位为0001
+      服务器推送
 3.0 quic协议
+      http2存在的问题:1.header阻塞,http2采用tcp协议,虽然在http协议层面解决了header阻塞,但是在tcp层面仍然存在,
+            如果一个tcp包丢失,那么后续的包就失效了
+      quic是基于udp和http2
+      特点:初次1RTT握手,拥有tcp的流量控制,超时重传,拥塞控制,同时避免了队首阻塞,连接迁移
+      1. 0RTT建立连接
+            http1/http2需要3RTT建立加密连接,tls握手则总共需要2TRR
+            c              s
+               syn ----->
+               <----syn/ack //1RTT
+               ack----->
+               clienthello->
+               ca,resp<--    //2RTT
+               key----->
+               <-------resp  //3RTT
+            http3初始连接只需要1RTT : DH密钥交换算法
+            client                    server
+                  client hello------>
+                                          A=g^a mod p
+                  <-------------g,p,A
+            B=g^b mod p
+            K=A^b mod p
+                  B ---------------->
+                                          K=B^a mod p
+            后续客户端保存了服务端配置可以0RTT建立连接
+
+      2. 连接迁移
+            tcp使用四元组保持连接,QUIC使用64位connection id保持连接
+
+      3. 多路复用
+            http1.1存在http队头阻塞和tcp队头阻塞,如果一个http头丢失,那么整个请求被阻塞
+            http2 解决了http队头阻塞,如果一个http头阻塞,复用的其他http请求可以继续
+                  但是如果一个tcp包丢失,那么整个连接还是必须等待对端重发,
+                  同时tls协议存在队头阻塞,TLS 基于 Record 组织数据,将一堆数据放在一起(即一个Record)加密,
+                  加密完后又拆分成多个TCP包传输。一般每个Record16K,包含12个TCP包,这样如果12个TCP包中有任何一个包丢失,
+                  那么整个Record都无法解密。
+            http3 决了tcp的队头阻塞和tls阻塞,QUIC基于packet传输,也基于packet加密从而避免tls队头阻塞
+                  QUIC基于udp,udp连接本身不要求包有序,所以在传输层不会队头阻塞
+      4. 拥塞控制
+            1. quic的拥塞控制在应用层,便于修改
+            2. quic使用前向纠错
+            3. quic使用单调递增packetnumber,tcp在超时重传后由于收到的包的seqnum不确定是重传的还是之前的,会影响RTT计算
+                  quic使用递增packetnum则不会
+            4. 更多ack块,tcp使用3个ack块,每收到三个包都需要回一个ack,quic则有256个ack块
+            5. 流量控制
+                  每个stream一个拥塞窗口
+
 
 http报文格式
 

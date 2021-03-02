@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2021-01-13 11:50:04
- * @LastEditTime: 2021-01-18 21:54:22
+ * @LastEditTime: 2021-03-01 09:48:18
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/AD框架
@@ -37,6 +37,7 @@
 集群功能，api实现       ->>>消息队列->>>(主要:解耦(业务面是SOA架构)，异步 次要:削峰)            应用层，传输层，及其他  (协议栈,负载算法)                      
 mysql,  协程, 异步
 
+breakpad 进程崩溃转储和分析框架
 
 
 
