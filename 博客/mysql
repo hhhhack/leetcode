@@ -25,7 +25,7 @@
  * 
  * @Author: hhhhack
  * @Date: 2021-01-21 16:42:16
- * @LastEditTime: 2021-02-23 19:40:46
+ * @LastEditTime: 2021-03-03 17:16:08
  * @LastEditors: hhhhack
  * @Description: 
  * @FilePath: /code/leetcode/博客/mysql
@@ -87,3 +87,13 @@ mysql性能查看:
     1.explain
         1.id
     2.performance schema
+
+innodb和myisam区别
+    1. 索引
+        innodb是聚簇索引,myisam是非聚簇索引
+    2. 事务
+        innodb支持事务,myisam不支持事务
+    3. 锁
+        innodb最小锁粒度是行锁,myisam则是表锁
+    4. 外键
+        innodb支持外键,myisam不支持外键
