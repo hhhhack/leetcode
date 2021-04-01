@@ -97,3 +97,6 @@ innodb和myisam区别
         innodb最小锁粒度是行锁,myisam则是表锁
     4. 外键
         innodb支持外键,myisam不支持外键
+    5. 文件存储
+        innodb 表文件，数据文件(索引和数据在一起)
+        myisam 表文件，数据文件，索引文件

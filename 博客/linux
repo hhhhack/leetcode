@@ -25,10 +25,15 @@
  * 
  * @Author: hhhhack
  * @Date: 2021-02-04 17:11:20
- * @LastEditTime: 2021-02-04 17:11:21
+ * @LastEditTime: 2021-03-27 18:56:54
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/博客/linux内存
+ * @FilePath: /leetcode/博客/linux
  * @
  */
 
+内存:
+    逻辑地址: 
+        [ 段描述符           ] [offset]
+        [ 段索引      |tl|RPL]
+        0                  15

@@ -25,10 +25,10 @@
  * 
  * @Author: hhhhack
  * @Date: 2021-01-08 10:48:31
- * @LastEditTime: 2021-02-23 19:54:21
+ * @LastEditTime: 2021-03-27 15:40:04
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/博客/golang
+ * @FilePath: /leetcode/博客/golang
  * @
  */
 
@@ -104,3 +104,6 @@ gc:垃圾回收机制
         4.最后清楚白色节点
         写屏障:检测所有读写操作,有写操作或者新建操作就把内存染成灰色
     问题:大量新建的小内存会导致性能下降
+
+sync:
+    mutex
