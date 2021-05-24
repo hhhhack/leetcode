@@ -25,10 +25,10 @@
  * 
  * @Author: hhhhack
  * @Date: 2020-12-03 10:57:58
- * @LastEditTime: 2020-12-09 15:21:04
+ * @LastEditTime: 2021-05-24 11:27:12
  * @LastEditors: hhhhack
  * @Description: 
- * @FilePath: /code/leetcode/剑指offer/ComStruct.h
+ * @FilePath: /leetcode/剑指offer/ComStruct.h
  * @
  */
 
@@ -41,29 +41,32 @@
 #include <deque>
 #include <iostream>
 
-struct ListNode {
+struct ListNode
+{
     int val;
     struct ListNode *next;
-    ListNode(int x) :
-                    val(x), next(NULL) {
+    ListNode(int x) : val(x), next(NULL)
+    {
+    }
+    void output();
+};
+struct TreeNode
+{
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL)
+    {
     }
 };
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
 
-struct RandomListNode {
+struct RandomListNode
+{
     int label;
     struct RandomListNode *next = NULL;
     struct RandomListNode *random = NULL;
 
-    RandomListNode(int label) : label(label), next(NULL), random(NULL){
-    };
+    RandomListNode(int label) : label(label), next(NULL), random(NULL){};
 };
 
 #endif
