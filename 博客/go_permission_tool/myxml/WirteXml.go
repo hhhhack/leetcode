@@ -24,23 +24,33 @@
  *
  *
  * @Author: hhhhack
- * @Date: 2021-05-24 15:46:58
- * @LastEditTime: 2021-05-27 17:19:55
+ * @Date: 2021-05-27 16:19:28
+ * @LastEditTime: 2021-05-27 17:37:28
  * @LastEditors: hhhhack
  * @Description:
- * @FilePath: /leetcode/博客/go_permission_tool/test.go
+ * @FilePath: /leetcode/博客/go_permission_tool/myxml/WirteXml.go
  *
  */
 
-package main
+package myxml
 
 import (
-	"myxml"
+	"encoding/xml"
+	"fmt"
 )
 
-func main() {
-	var ret = new(myxml.XmlRet)
-	myxml.ReadConf("./sys_role_permission.conf", ret)
+func WriteConf(path string, xmlret *XmlRet) {
+	// file, err := os.OpenFile(path, os.O_CREATE|os.O_RDWR, os.ModeSticky|os.ModeSetuid|os.ModeSetgid)
+	// if (err != nil){
 
-	myxml.WriteConf("", ret)
+	// }
+	// var xmlEncoder = xml.NewEncoder(file)
+
+	// err = xmlEncoder.Encode(xmlret)
+
+	ret, err := xml.MarshalIndent(xmlret, "", "	")
+	if err != nil {
+		fmt.Printf("marsh err %c \n", err)
+	}
+	fmt.Print(string(ret))
 }
